@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { User } from '../../models/User';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HomeComponent {
     loading: boolean = true;
-    users: any[] = []
+    users: User[] = []
 
     constructor(private http: HttpClient) { }
 
@@ -17,7 +18,7 @@ export class HomeComponent {
     }
 
     fetchUsers() {
-        this.http.get<Object[]>('https://jsonplaceholder.typicode.com/users')
+        this.http.get<User[]>('https://jsonplaceholder.typicode.com/users')
         .subscribe(users => {
             this.users = users;
             this.loading = false;
